@@ -1,0 +1,249 @@
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+
+.containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.recipe-card {
+  width: 300px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 1, 0.8);
+  background-color: white;
+}
+
+.recipe-image img,
+.mat-card-image img {
+  width: 100%;
+  height: auto;
+}
+
+.recipe-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.recipe-card-subtitle {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.recipe-card-content p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.action button {
+  margin-left: 10px;
+}
+
+.share-popup {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.close {
+  margin-left: 300px;
+  color: red;
+}
+
+.forms-countai,
+.form-contain {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.forms-countainer h2,
+.form-containe h2 {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.mat-card-header {
+  padding: 15px;
+}
+
+.mat-card-actions {
+  padding: 10px;
+}
+
+.mat-icon-button {
+  margin-right: 5px;
+}
+
+.add-recipe-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.toggle-button-container {
+  text-align: center;
+  margin-bottom: 20px;
+  position: fixed;
+  background: #4CAF50;
+  margin-left: 600px;
+  margin-right: -600px;
+}
+
+select {
+  word-wrap: normal;
+  height: 20px;
+}
+
+.comment-form-container h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.comment-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-container label {
+  margin-top: 10px;
+}
+
+.comment-form-container textarea,
+.comment-form-container input[type="number"] {
+  padding: 8px;
+  margin-top: 5px;
+}
+
+.comment-form-container button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-form-container button:hover {
+  background-color: #0056b3; 
+}
+
+.comment-form-container button.mat-raised-button {
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+.comment-form-container button.mat-raised-button:hover {
+  background-color: #0056b3; 
+}
+.comment-form-container {
+  width: 406px;
+  position: absolute;
+  background: white;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  /* z-index: 1000;  */
+}
+
+.comment-form-container h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.comment-form-container div {
+  margin-top: 15px;
+}
+
+.comment-form-container p {
+  margin-bottom: 5px;
+}
+
+.comment-form-container button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-form-container button:hover {
+  background-color: #0056b3; 
+}
+
+.comment-form-container button.mat-raised-button {
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+.comment-form-container button.mat-raised-button:hover {
+  background-color: #0056b3; 
+}

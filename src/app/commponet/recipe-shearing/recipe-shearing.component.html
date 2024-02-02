@@ -1,0 +1,241 @@
+<div class="containers">
+  <input type="text" placeholder="Search recipes" [(ngModel)]="searchValue"
+    style="width: 67%; padding: 10px; border: 1px solid #ccc; border-radius: 3px; margin-bottom: 10px;"
+    (input)="onSearchChange()" (change)="onSearchChange()" />
+
+  <select id="recipeType" name="recipeType" [(ngModel)]="selectedCategory" (change)="onCategoryChange($event)">
+    <option value="">All Categories</option>
+    <option value="breakfast">Breakfast</option>
+    <option value="lunch">Lunch</option>
+    <option value="dinner">Dinner</option>
+    <option value="dessert">Dessert</option>
+  </select>
+
+  <div *ngFor="let recipe of filteredRecipes">
+    <mat-card class="recipe-card">
+      <mat-card-header>
+        <div mat-card-avatar class="recipe-image">
+          <img *ngIf="recipe.img" [src]="recipe.img" alt="Recipe Image">
+        </div>
+        <mat-card-title>{{ recipe.title }}</mat-card-title>
+        <mat-card-subtitle>Category: {{ recipe.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image *ngIf="recipe.img" [src]="recipe.img" alt="Recipe Images">
+      <mat-card-content>
+        <p *ngIf="recipe.ingredients && recipe.ingredients.length > 0">
+          Ingredients: {{ recipe.ingredients.join(', ') }}
+        </p>
+        <p>Instructions: {{ recipe.instructions }}</p>
+      </mat-card-content>
+      <mat-card-actions class="action">
+        <mat-icon>thumb_up_alt</mat-icon>
+        <mat-icon (click)="share(recipe)">share</mat-icon>
+        <mat-icon (click)="showCommentAndRatingForm(recipe)">chat</mat-icon>
+        <mat-icon (click)="showAllCommentsAndRatings(recipe)">view_agenda</mat-icon>
+        <div *ngIf="showShareOptions && selectedRecipe === recipe" class="share-popup">
+          <mat-icon class="close-button" (click)="hideShareOptions()">close</mat-icon>
+          <mat-icon mat-icon-button (click)="shareOnWhatsApp()">share</mat-icon> Share on WhatsApp
+          <mat-icon (click)="shareOnFacebook()">share</mat-icon> Share on Facebook
+
+        </div>
+
+        <p mat-icon-button [matMenuTriggerFor]="menu" class="matMenu">
+          <mat-icon>menu</mat-icon>
+        </p>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="editRecipeDetails(recipe)">
+            <mat-icon>edit</mat-icon>
+            Edit
+          </button>
+
+
+          <button mat-menu-item (click)="deleteRecipe(recipe)">
+            <mat-icon>delete</mat-icon>
+            Delete
+          </button>
+
+          <button mat-icon-button (click)="planMeal('monday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>Monday
+          </button>
+          <button mat-icon-button (click)="planMeal('tuesday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>tuesday
+          </button>
+          <button mat-icon-button (click)="planMeal('wednesday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>Wednesday
+          </button>
+          <button mat-icon-button (click)="planMeal('thursday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>Thursday
+          </button>
+          <button mat-icon-button (click)="planMeal('friday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>Friday
+          </button>
+          <button mat-icon-button (click)="planMeal('saturday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>Saturday
+          </button>
+          <button mat-icon-button (click)="planMeal('sunday',recipe.id)">
+            <mat-icon>calendar_today</mat-icon>sunday
+          </button>
+        </mat-menu>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <mat-card *ngFor="let recipe of recipes" class="recipe-card">
+    <mat-card-header>
+      <div mat-card-avatar class="recipe-image">
+        <img *ngIf="recipe.img" [src]="recipe.img" alt="Recipe Image">
+      </div>
+      <mat-card-title>{{ recipe.title }}</mat-card-title>
+      <mat-card-subtitle>Category: {{ recipe.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image *ngIf="recipe.img" [src]="recipe.img" alt="Recipe Images">
+    <mat-card-content>
+      <p *ngIf="recipe.ingredients && recipe.ingredients.length > 0">
+        Ingredients: {{ recipe.ingredients.join(', ') }}
+      </p>
+      <p>Instructions: {{ recipe.instructions }}</p>
+    </mat-card-content>
+    <mat-card-actions class="action">
+
+      <mat-icon>thumb_up_alt</mat-icon>
+      <mat-icon (click)="share(recipe)">share</mat-icon>
+      <mat-icon (click)="showCommentAndRatingForm(recipe)">chat</mat-icon>
+      <mat-icon (click)="showAllCommentsAndRatings(recipe)">view_agenda</mat-icon>
+      <div *ngIf="showShareOptions && selectedRecipe === recipe" class="share-popup">
+        <mat-icon class="close-button" (click)="hideShareOptions()">close</mat-icon>
+        <mat-icon mat-icon-button (click)="shareOnWhatsApp()">share</mat-icon> Share on WhatsApp
+        <mat-icon (click)="shareOnFacebook()">share</mat-icon> Share on Facebook
+
+      </div>
+
+      <p mat-icon-button [matMenuTriggerFor]="menu" class="matMenu">
+        <mat-icon>menu</mat-icon>
+      </p>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="editRecipeDetails(recipe)">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+
+
+        <button mat-menu-item (click)="deleteRecipe(recipe)">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+
+        <button mat-icon-button (click)="planMeal('monday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>Monday
+        </button>
+        <button mat-icon-button (click)="planMeal('tuesday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>tuesday
+        </button>
+        <button mat-icon-button (click)="planMeal('wednesday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>Wednesday
+        </button>
+        <button mat-icon-button (click)="planMeal('thursday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>Thursday
+        </button>
+        <button mat-icon-button (click)="planMeal('friday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>Friday
+        </button>
+        <button mat-icon-button (click)="planMeal('saturday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>Saturday
+        </button>
+        <button mat-icon-button (click)="planMeal('sunday',recipe.id)">
+          <mat-icon>calendar_today</mat-icon>sunday
+        </button>
+      </mat-menu>
+    </mat-card-actions>
+  </mat-card>
+
+
+  <div *ngIf="editRecipe" class="forms-countai">
+    <mat-icon class="close" (click)="cancelEdit()">close</mat-icon>
+    <h2>Edit Recipe</h2>
+    <form (submit)="updateRecipe()">
+      <label for="editrecipeImage">Recipe Image:</label>
+      <input type="file" id="editrecipeImage" name="editrecipeImage" (change)="onImageChange($event)">
+      <img *ngIf="newRecipe.img" [src]="newRecipe.img" alt="Recipe Image">
+      <label for="editRecipeName">Recipe Name:</label>
+      <input type="text" id="editRecipeName" name="editRecipeName" [(ngModel)]="editRecipe.name">
+
+      <label for="editRecipeTitle">Recipe Title:</label>
+      <input type="text" id="editRecipeTitle" name="editRecipeTitle" [(ngModel)]="editRecipe.title">
+
+      <label for="editRecipeIngredientsString">Recipe Ingredients:</label>
+      <textarea id="editRecipeIngredients" name="editRecipeIngredients"
+        [(ngModel)]="editRecipe.ingredientsString"></textarea>
+
+      <label for="editRecipeInstructions">Recipe Instructions:</label>
+      <textarea id="editRecipeInstructions" name="editRecipeInstructions"
+        [(ngModel)]="editRecipe.instructions"></textarea>
+
+      <label for="editRecipeCategory">Recipe Category:</label>
+      <input type="text" id="editRecipeCategory" name="editRecipeCategory" [(ngModel)]="editRecipe.category">
+
+      <button type="submit">Update Recipe</button>
+    </form>
+  </div>
+  <button class="add-recipe-button" mat-icon-button (click)="showRecipeForm()">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <div *ngIf="showForm" class="form-contain">
+    <mat-icon class="close" (click)="close()">close</mat-icon>
+    <h2>Add Recipe</h2>
+    <form (submit)="submitRecipe()">
+      <label for="recipeImage">Recipe Image:</label>
+      <input type="file" id="recipeImage" name="recipeImage" (change)="onImageChange($event)">
+      <img *ngIf="newRecipe.img" [src]="newRecipe.img" alt="Recipe Image">
+      <label for="recipeName">Recipe Name:</label>
+      <input type="text" id="recipeName" name="recipeName" [(ngModel)]="newRecipe.name">
+
+      <label for="recipeTitle">Recipe Title:</label>
+      <input type="text" id="recipeTitle" name="recipeTitle" [(ngModel)]="newRecipe.title">
+
+      <label for="recipeIngredientsString">Recipe Ingredients:</label>
+      <textarea id="recipeIngredients" name="recipeIngredients" [(ngModel)]="newRecipe.ingredientsString"></textarea>
+      <label for="recipeInstructions">Recipe Instructions:</label>
+      <textarea id="recipeInstructions" name="recipeInstructions" [(ngModel)]="newRecipe.instructions"></textarea>
+
+      <label for="recipeCategory">Recipe Category:</label>
+      <input type="text" id="recipeCategory" name="recipeCategory" [(ngModel)]="newRecipe.category">
+
+      <button type="submit">Save Recipe</button>
+
+    </form>
+  </div>
+  <div class="toggle-button-container">
+    <button mat-raised-button (click)="toggleMealPlan()">Meal Plan</button>
+  </div>
+
+  <div *ngIf="showMealPlan" class="meal-plan-container" style="position: absolute; left: 35%; right: 35%;
+top: 50%; background-color: black ; color: white; width: 300px; ">
+    <h3>Meal Plan</h3>
+    <div *ngFor="let day of ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']">
+      <p>{{ day.charAt(0).toUpperCase() + day.slice(1) }}: {{ mealPlan?.[day]?.title || 'No Recipe' }}</p>
+    </div>
+  </div>
+  <div *ngIf="showCommentAndRatingFormFlag && selectedRecipeForComment" class="comment-form-container">
+    <h2>Comment or Rating for {{ selectedRecipeForComment.title }}</h2>
+    <form (ngSubmit)="submitCommentAndRating(comment.value, +rating.value)">
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" #comment required></textarea>
+
+      <label for="rating">Rating:</label>
+      <input type="number" id="rating" name="rating" min="1" max="5" #rating required>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <button mat-raised-button (click)="hideCommentAndRatingForm()">Cancel</button>
+  </div>
+  <div *ngIf="showAllCommentsAndRatingsFlag && selectedRecipeForComment" class="comment-form-container">
+    <h2>All Comments and Ratings for {{ selectedRecipeForComment.title }}</h2>
+    <div *ngFor="let commentAndRating of allCommentsAndRatings">
+      <p>Comment: {{ commentAndRating.comment }}</p>
+      <p>Rating: {{ commentAndRating.rating }}</p>
+      <hr>
+    </div>
+    <button mat-raised-button (click)="hideAllCommentsAndRatings()">Close</button>
+  </div>
+</div>

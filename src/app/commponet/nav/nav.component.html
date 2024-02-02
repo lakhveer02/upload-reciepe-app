@@ -1,0 +1,42 @@
+<div *ngIf="isLoggedIn">
+  <nav class="navbar navbar-dark d-flex flex-wrap justify-content-between" *ngIf="!hideNavbar">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="navbar">Main</a>
+    </div>
+    <div class="navbar-expand ml-auto navbar-nav justify-content-between">
+      <nav class="navbar-nav">
+               <a class="nav-item nav-link" (click)="openShoppingCart()"><mat-icon>favorite_border</mat-icon></a>
+        <div *ngIf="showShoppingCart" class="shopping-cart">
+          <p>Shopping Cart Content</p>
+        </div>
+
+        <a class="user-profile" (click)="showUserProfile()">
+          <img *ngIf="user?.photoURL; else defaultImage" [src]="user?.photoURL" alt="User Profile">
+          <ng-template #defaultImage>
+            <mat-icon>person</mat-icon>
+          </ng-template>
+
+        </a>
+        <div *ngIf="user && showUserProfileModal" class="user-profile-modal">
+          <h3>User Profile</h3>
+          <p>Name: {{ user.displayName || 'N/A' }}</p>
+          <p>Email: {{ user.email || 'N/A' }}</p>
+          <p>UID: {{ user.uid || 'N/A' }}</p>
+          <button (click)="closeUserProfile()">Close</button>
+        </div>
+      
+        <div class="search-container">
+          <!-- <input type="search"> -->
+          <!-- <a><button><mat-icon>search</mat-icon></button></a> -->
+          <ng-container *ngIf="authService.currentUser$"></ng-container>
+          <a> <button mat-button (click)="logout()"> <mat-icon>logout</mat-icon></button></a> 
+        </div>
+      </nav>
+    </div>
+  </nav>
+
+  <div class='container'>
+    <router-outlet></router-outlet>
+    <app-recipe-shearing></app-recipe-shearing>
+  </div>
+</div>

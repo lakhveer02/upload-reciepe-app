@@ -1,0 +1,28 @@
+<div class="form-container mat-elevation-z5">
+<h1>Signup</h1>
+<form [formGroup]="signup" (click)="submit()">
+
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="displayName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="lname">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input matInput placeholder="Mobile No" formControlName="mnumber">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email address" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password" type="password" />
+  </mat-form-field>
+  <button mat-raised-button type="submit">Signup</button>
+  <span>You have Alredy login<a routerLink="/login">Login</a></span>
+</form>
+</div>
+<router-outlet></router-outlet>
